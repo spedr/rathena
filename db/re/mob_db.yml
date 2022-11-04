@@ -54154,7 +54154,7 @@ Body:
     AegisName: DUMMY_150
     Name: Dummy 150
     Level: 150
-    Hp: 99999999
+    Hp: 999999999
     Defense: 120
     MagicDefense: 120
     Size: Medium
