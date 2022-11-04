@@ -1,0 +1,18 @@
+//===== rAthena Script =======================================
+//= Mapflag: Damage Taken
+//===== Description: =========================================
+//= Sets Damage taken to specified value
+//===== Structure ============================================
+//= mapname	damagetaken	value
+//===== Changelogs: ==========================================
+//= 1.0 First Version.
+//============================================================
+
+//============================================================
+// Prontera Dummies
+//============================================================
+bossnia_01	mapflag	damagetaken	2
+bossnia_02	mapflag	damagetaken	2
+bossnia_03	mapflag	damagetaken	2
+bossnia_04	mapflag	damagetaken	2
+amicitia2	mapflag	damagetaken	2

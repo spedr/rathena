@@ -3625,6 +3625,7 @@ void map_flags_init(void){
 		mapdata->flag[MF_NOCOMMAND] = false; // nocommand mapflag level
 		map_setmapflag_sub(i, MF_BEXP, true, &args); // per map base exp multiplicator
 		map_setmapflag_sub(i, MF_JEXP, true, &args); // per map job exp multiplicator
+		map_setmapflag_sub(i, MF_DAMAGETAKEN, true, &args); // per map job exp multiplicator
 
 		// Clear adjustment data, will be reset after loading NPC
 		mapdata->damage_adjust = {};
@@ -4546,6 +4547,8 @@ int map_getmapflag_sub(int16 m, enum e_mapflag mapflag, union u_mapflag_args *ar
 			return mapdata->flag[MF_NOEXPPENALTY] && mapdata->flag[MF_NOZENYPENALTY];
 		case MF_NOEXP:
 			return mapdata->flag[MF_NOBASEEXP] && mapdata->flag[MF_NOJOBEXP];
+		case MF_DAMAGETAKEN:
+			return mapdata->flag[MF_DAMAGETAKEN];
 		case MF_SKILL_DAMAGE:
 			nullpo_retr(-1, args);
 
@@ -4752,6 +4755,17 @@ bool map_setmapflag_sub(int16 m, enum e_mapflag mapflag, bool status, union u_ma
 				if (mapflag == MF_BEXP && mapdata->flag[MF_NOBASEEXP]) {
 					mapdata->flag[MF_NOBASEEXP] = false;
 					ShowWarning("map_setmapflag: Unable to set No Base EXP and BEXP flags for the same map! Removing No Base EXP flag from %s.\n", mapdata->name);
+				}
+				mapdata->flag[mapflag] = args->flag_val;
+			} else
+				mapdata->flag[mapflag] = false;
+			break;
+		case MF_DAMAGETAKEN:
+			if (status) {
+				nullpo_retr(false, args);
+				if (mapflag == MF_DAMAGETAKEN && mapdata->flag[MF_NOBASEEXP]) {
+					mapdata->flag[MF_NOBASEEXP] = false;
+					ShowWarning("map_setmapflag: Unable to set No Base EXP and DAMAGETAKEN flags for the same map! Removing No Base EXP flag from %s.\n", mapdata->name);
 				}
 				mapdata->flag[mapflag] = args->flag_val;
 			} else

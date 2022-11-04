@@ -1919,9 +1919,16 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 
 	if (bl->type == BL_MOB) { // Reduces damage received for Green Aura MVP
 		mob_data *md = BL_CAST(BL_MOB, bl);
+		
+		//check for MF_DAMAGETAKEN somewhere here
+		//ShowWarning("damagetaken val %d\n", map_getmapflag(bl->m, MF_DAMAGETAKEN));
 
-		if (md && md->damagetaken != 100)
-			damage = i64max(damage * md->damagetaken / 100, 1);
+		if (md && map_getmapflag(bl->m, MF_DAMAGETAKEN) != 100){
+			damage = i64max(damage * map_getmapflag(bl->m, MF_DAMAGETAKEN) / 100, 1);
+		} else if (md && md->db->damagetaken != 100){
+			damage = i64max(damage * md->db->damagetaken / 100, 1);
+		} 
+
 	}
 
 	return damage;
