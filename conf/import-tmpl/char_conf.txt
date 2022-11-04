@@ -1,0 +1,4 @@
+userid: username
+passwd: password
+char_ip: 20.206.125.205
+login_ip: 127.0.0.1

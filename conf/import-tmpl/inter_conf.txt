@@ -1,0 +1,7 @@
+server_ip: 127.0.0.1
+server_port: 3306
+login_server_db: ragnarok
+ipban_db_db: ragnarok
+char_server_db: ragnarok
+map_server_db: ragnarok
+log_db_db: ragnarok
