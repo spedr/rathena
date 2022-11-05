@@ -183062,3 +183062,30 @@ Body:
           bonus2 bSkillAtk,"GN_CARTCANNON",BaseLevel/2;
         }
       }
+  - Id: 490030
+    AegisName: Temporal_Ring_TW
+    Name: Temporal Ring TW
+    Type: Armor
+    Buy: 20
+    Weight: 10
+    Slots: 0
+    EquipLevelMin: 1
+    Jobs:
+      All: true
+    Classes:
+      All_Upper: true
+    Locations:
+      Both_Accessory: true
+    ArmorLevel: 1
+    Script: |
+      bonus bAspdRate,5;
+      bonus bMaxSP,100;
+      bonus2 bAddClass,Class_All,5;
+      bonus2 bSkillUseSP,"GN_CART_TORNADO",5;
+
+      if (eaclass()&EAJL_THIRD && BaseJob == Job_Alchemist) {
+        bonus2 bSkillAtk,"GN_CARTCANNON",100;
+        bonus bAspdRate,5;
+        bonus2 bAddClass,Class_All,5;
+        bonus2 bSkillAtk,"GN_CART_TORNADO",100;
+      }
